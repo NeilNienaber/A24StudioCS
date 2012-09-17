@@ -172,11 +172,11 @@ class A24StudioCS_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSnif
             }
         }
 
-        $comment           = $phpcsFile->getTokensAsString($commentStart, ($commentEnd - $commentStart + 1));
+        $commentTokenAsString = $phpcsFile->getTokensAsString($commentStart, ($commentEnd - $commentStart + 1));
         $this->_methodName = $phpcsFile->getDeclarationName($stackPtr);
 
         try {
-            $this->commentParser = new PHP_CodeSniffer_CommentParser_FunctionCommentParser($comment, $phpcsFile);
+            $this->commentParser = new PHP_CodeSniffer_CommentParser_FunctionCommentParser($commentTokenAsString, $phpcsFile);
             $this->commentParser->parse();
         } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
             $line = ($e->getLineWithinComment() + $commentStart);
@@ -194,7 +194,7 @@ class A24StudioCS_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSnif
         $this->processParams($commentStart);
         $this->processReturn($commentStart, $commentEnd);
         $this->processThrows($commentStart);
-
+    
         // No extra newline before short description.
         $short        = $comment->getShortComment();
         $newlineCount = 0;
@@ -233,6 +233,14 @@ class A24StudioCS_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSnif
                 $phpcsFile->addError($error, ($commentStart + $newlineCount));
                 $short = rtrim($short, $phpcsFile->eolChar.' ');
             }
+        }
+        
+        // parse and ensure author tags are present
+        $this->processAuthors($commentTokenAsString, $phpcsFile, $commentStart);
+        
+        // check that each method has an @since tag
+        if (!in_array('since', $params)) {
+            $phpcsFile->addError("Each method must define an since tag.", ($commentStart + $newlineCount));
         }
 
     }//end process()
@@ -462,7 +470,53 @@ class A24StudioCS_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSnif
 
     }//end processParams()
 
+        /**
+     * Process the author tag(s) that this header comment has.
+     *
+     * This function is different from other _process functions
+     * as $authors is an array of SingleElements, so we work out
+     * the errorPos for each element separately
+     *
+     * @param string $comment   The comment being parse
+     * @param string $phpcsFile The phpcs file  
+     * @param int $commentStart The position in the stack where
+     *                          the comment started.
+     *
+     * @return void
+     */
+    protected function processAuthors($comment, $phpcsFile, $commentStart) {
+        // Parse the header comment docblock.
+        try {
+            $commentParser = new PHP_CodeSniffer_CommentParser_ClassCommentParser($comment, $phpcsFile);
+            $commentParser->parse();
+        } catch (PHP_CodeSniffer_CommentParser_ParserException $e) {
+            $line = ($e->getLineWithinComment() + $commentStart);
+            $phpcsFile->addError($e->getMessage(), $line);
+            return;
+        }
+        
+        $authors = $commentParser->getAuthors();
+        
+        // Report missing return.
+        if (empty($authors) === false) {
+            foreach ($authors as $author) {
+                $errorPos = ($commentStart + $author->getLine());
+                $content = $author->getContent();
+                if ($content !== '') {
 
+                    if (preg_match('/^\w((([A-Za-z]{1,30})).){1,3} <[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})>$/', trim($content)) === 0) {
+                        $error = 'Content of the @author tag must be in the form "Name Surname <emailAdress>"';
+                        $this->currentFile->addError($error, $errorPos);
+                    }
+                } else {
+                    $docBlock = (get_class($this) === 'PEAR_Sniffs_Commenting_FileCommentSniff') ? 'file' : 'class';
+                    $error = "Content missing for @author tag in $docBlock comment";
+                    $this->currentFile->addError($error, $errorPos);
+                }
+            }
+        }
+    }
+    
 }//end class
 
 ?>
