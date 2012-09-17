@@ -24,7 +24,7 @@ This will install the PSR coding standards on the system, but will not set them 
 To install the coding standards, do the following:
 ```bash
 cd /usr/share/php/PHP/CodeSniffer/Standards
-git clone https://github.com/klaussilveira/phpcs-psr A24Studio
+git clone git@github.com:jaconel/A24StudioCS.git A24Studio
 ```
 
 To set the A24Studio coding standards as the defaults, execute the following code:
