@@ -14,7 +14,7 @@ and PEAR coding standards. All these, except the PSR coding standards, are insta
 The PSR Coding standards can be found [here](git://github.com/klaussilveira/phpcs-psr.git). To install the PSR coding standards, I recommend following the commands below:
 ```bash
  cd /usr/share/php/PHP/CodeSniffer/Standards
- git clone https://github.com/klaussilveira/phpcs-psr PSR
+ sudo git clone https://github.com/klaussilveira/phpcs-psr PSR
 ``
 
 This will install the PSR coding standards on the system, but will not set them as the default.
@@ -24,10 +24,10 @@ This will install the PSR coding standards on the system, but will not set them 
 To install the coding standards, do the following:
 ```bash
 cd /usr/share/php/PHP/CodeSniffer/Standards
-git clone git@github.com:jaconel/A24StudioCS.git A24Studio
+sudo git clone git@github.com:jaconel/A24StudioCS.git
 ```
 
 To set the A24Studio coding standards as the defaults, execute the following code:
 ```bash
-phpcs --config-set default_standard A24Studio
+sudo phpcs --config-set default_standard A24StudioCS
 ```

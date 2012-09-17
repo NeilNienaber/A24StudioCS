@@ -20,7 +20,6 @@
  <rule ref="Generic.Commenting.Todo"/>
  <rule ref="PEAR.Classes.ClassDeclaration"/>
  <rule ref="PEAR.Functions.FunctionCallSignature"/>
- <rule ref="PEAR.Functions.FunctionCallArgumentSpacing"/>
  <rule ref="PEAR.Functions.ValidDefaultValue"/>
  <rule ref="PEAR.Classes.ClassDeclaration"/>
  <rule ref="Squiz.Functions.GlobalFunction"/>
@@ -29,9 +28,9 @@
  <!--
     Add custom sniffs
  -->
- <rule ref="A24Studio.WhiteSpace.ScopeClosingBrace"/>
- <rule ref="A24Studio.Commenting.FunctionComment"/>
- <rule ref="A24Studio.Commenting.FileComment"/>
- <rule ref="A24Studio.Commenting.InlineComment"/>
+ <rule ref="A24StudioCS.WhiteSpace.ScopeClosingBrace"/>
+ <rule ref="A24StudioCS.Commenting.FunctionComment"/>
+ <rule ref="A24StudioCS.Commenting.FileComment"/>
+ <rule ref="A24StudioCS.Commenting.InlineComment"/>
  
 </ruleset>

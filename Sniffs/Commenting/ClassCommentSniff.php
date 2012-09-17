@@ -19,8 +19,8 @@ if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === f
     throw new PHP_CodeSniffer_Exception($error);
 }
 
-if (class_exists('A24Studio_Sniffs_Commenting_FileCommentSniff', true) === false) {
-    $error = 'Class A24Studio_Sniffs_Commenting_FileCommentSniff not found';
+if (class_exists('A24StudioCS_Sniffs_Commenting_FileCommentSniff', true) === false) {
+    $error = 'Class A24StudioCS_Sniffs_Commenting_FileCommentSniff not found';
     throw new PHP_CodeSniffer_Exception($error);
 }
 
@@ -47,7 +47,7 @@ if (class_exists('A24Studio_Sniffs_Commenting_FileCommentSniff', true) === false
  * @version   Release: 1.2.1
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class A24Studio_Sniffs_Commenting_ClassCommentSniff extends A24Studio_Sniffs_Commenting_FileCommentSniff
+class A24StudioCS_Sniffs_Commenting_ClassCommentSniff extends A24StudioCS_Sniffs_Commenting_FileCommentSniff
 {
 
 

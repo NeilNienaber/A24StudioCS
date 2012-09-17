@@ -43,7 +43,7 @@ if (class_exists('PHP_CodeSniffer_CommentParser_ClassCommentParser', true) === f
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
 
-class A24Studio_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
+class A24StudioCS_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
     /**

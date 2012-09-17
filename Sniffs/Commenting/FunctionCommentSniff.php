@@ -45,7 +45,7 @@ if (class_exists('PHP_CodeSniffer_CommentParser_FunctionCommentParser', true) ==
  * @version   Release: 1.2.1
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class A24Studio_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sniff
+class A24StudioCS_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSniffer_Sniff
 {
 
     /**
