@@ -15,7 +15,7 @@ The PSR Coding standards can be found [here](git://github.com/klaussilveira/phpc
 ```bash
  cd /usr/share/php/PHP/CodeSniffer/Standards
  sudo git clone https://github.com/klaussilveira/phpcs-psr PSR
-``
+```
 This will install the PSR coding standards on the system, but will not set them as the default.
 
 # Installation
