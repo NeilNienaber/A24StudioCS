@@ -24,7 +24,6 @@
  <rule ref="PEAR.Classes.ClassDeclaration"/>
  <rule ref="PEAR.WhiteSpace.ScopeIndent"/>
  <rule ref="Squiz.Functions.GlobalFunction"/>
- <rule ref="Zend.NamingConventions.ValidVariableName"/>
  
  <!--
     Add custom sniffs
@@ -33,5 +32,6 @@
  <rule ref="A24StudioCS.Commenting.FunctionComment"/>
  <rule ref="A24StudioCS.Commenting.FileComment"/>
  <rule ref="A24StudioCS.Commenting.InlineComment"/>
+ 
  
 </ruleset>
