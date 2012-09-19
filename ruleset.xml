@@ -17,6 +17,7 @@
     Add generic and pear standards we wish to reuse
  -->
  <rule ref="Generic.PHP.DisallowShortOpenTag"/>
+ <rule ref="Generic.PHP.LowerCaseConstant"/>
  <rule ref="Generic.Commenting.Todo"/>
  <rule ref="PEAR.Classes.ClassDeclaration"/>
  <rule ref="PEAR.Functions.FunctionCallSignature"/>
