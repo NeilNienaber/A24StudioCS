@@ -1,17 +1,17 @@
 <?php
 /**
-* Parses and verifies the variable doc comment.
-*
-* PHP version 5
-*
-* @category PHP
-* @package PHP_CodeSniffer
-* @author Greg Sherwood <gsherwood@squiz.net>
-* @author Marc McIntyre <mmcintyre@squiz.net>
-* @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
-* @license https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
-* @link http://pear.php.net/package/PHP_CodeSniffer
-*/
+ * Parses and verifies the variable doc comment.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package PHP_CodeSniffer
+ * @author Greg Sherwood <gsherwood@squiz.net>
+ * @author Marc McIntyre <mmcintyre@squiz.net>
+ * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
+ * @link http://pear.php.net/package/PHP_CodeSniffer
+ */
 
 if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === false) {
     throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_Standards_AbstractVariableSniff not found');
@@ -22,55 +22,55 @@ if (class_exists('PHP_CodeSniffer_CommentParser_MemberCommentParser', true) === 
 }
 
 /**
-* Parses and verifies the variable doc comment.
-*
-* Verifies that :
-* <ul>
-* <li>A variable doc comment exists.</li>
-* <li>Short description ends with a full stop.</li>
-* <li>There is a blank line after the short description.</li>
-* <li>There is a blank line between the description and the tags.</li>
-* <li>Check the order, indentation and content of each tag.</li>
-* </ul>
-*
-* @category PHP
-* @package PHP_CodeSniffer
-* @author Greg Sherwood <gsherwood@squiz.net>
-* @author Marc McIntyre <mmcintyre@squiz.net>
-* @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
-* @license https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
-* @version Release: @package_version@
-* @link http://pear.php.net/package/PHP_CodeSniffer
-*/
+ * Parses and verifies the variable doc comment.
+ *
+ * Verifies that :
+ * <ul>
+ * <li>A variable doc comment exists.</li>
+ * <li>Short description ends with a full stop.</li>
+ * <li>There is a blank line after the short description.</li>
+ * <li>There is a blank line between the description and the tags.</li>
+ * <li>Check the order, indentation and content of each tag.</li>
+ * </ul>
+ *
+ * @category PHP
+ * @package PHP_CodeSniffer
+ * @author Greg Sherwood <gsherwood@squiz.net>
+ * @author Marc McIntyre <mmcintyre@squiz.net>
+ * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
+ * @license https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
+ * @version Release: @package_version@
+ * @link http://pear.php.net/package/PHP_CodeSniffer
+ */
 
 class A24StudioCS_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
 {
 
     /**
-* The header comment parser for the current file.
-*
-* @var PHP_CodeSniffer_Comment_Parser_ClassCommentParser
-*/
+     * The header comment parser for the current file.
+     *
+     * @var PHP_CodeSniffer_Comment_Parser_ClassCommentParser
+     */
     protected $commentParser = null;
 
 
     /**
-* Called to process class member vars.
-*
-* @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-* @param int $stackPtr The position of the current token
-* in the stack passed in $tokens.
-*
-* @return void
-*/
+     * Called to process class member vars.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
+     * @param int $stackPtr The position of the current token
+     * in the stack passed in $tokens.
+     *
+     * @return void
+     */
     public function processMemberVar(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $this->currentFile = $phpcsFile;
         $tokens = $phpcsFile->getTokens();
         $commentToken = array(
-                              T_COMMENT,
-                              T_DOC_COMMENT,
-                             );
+            T_COMMENT,
+            T_DOC_COMMENT,
+        );
 
         // Extract the var comment docblock.
         $commentEnd = $phpcsFile->findPrevious($commentToken, ($stackPtr - 3));
@@ -207,8 +207,8 @@ class A24StudioCS_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer
         $words = $this->commentParser->getWords();
         $lastPos = (count($words) - 1);
         if (trim($words[($lastPos - 1)]) !== ''
-            || strpos($words[($lastPos - 1)], $this->currentFile->eolChar) === false
-            || trim($words[($lastPos - 2)]) === ''
+        || strpos($words[($lastPos - 1)], $this->currentFile->eolChar) === false
+        || trim($words[($lastPos - 2)]) === ''
         ) {
             $error = 'Additional blank lines found at end of variable comment';
             $this->currentFile->addError($error, $commentEnd, 'SpacingAfter');
@@ -218,13 +218,13 @@ class A24StudioCS_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer
 
 
     /**
-* Process the var tag.
-*
-* @param int $commentStart The position in the stack where the comment started.
-* @param int $commentEnd The position in the stack where the comment ended.
-*
-* @return void
-*/
+     * Process the var tag.
+     *
+     * @param int $commentStart The position in the stack where the comment started.
+     * @param int $commentEnd The position in the stack where the comment ended.
+     *
+     * @return void
+     */
     protected function processVar($commentStart, $commentEnd)
     {
         $var = $this->commentParser->getVar();
@@ -254,9 +254,9 @@ class A24StudioCS_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer
                 if ($content !== $suggestedType) {
                     $error = 'Expected "%s"; found "%s" for @var tag in variable comment';
                     $data = array(
-                              $suggestedType,
-                              $content,
-                             );
+                    $suggestedType,
+                    $content,
+                    );
                     $this->currentFile->addError($error, $errorPos, 'IncorrectVarType', $data);
                 }
             }
@@ -276,12 +276,12 @@ class A24StudioCS_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer
 
 
     /**
-* Process the see tags.
-*
-* @param int $commentStart The position in the stack where the comment started.
-*
-* @return void
-*/
+     * Process the see tags.
+     *
+     * @param int $commentStart The position in the stack where the comment started.
+     *
+     * @return void
+     */
     protected function processSees($commentStart)
     {
         $sees = $this->commentParser->getSees();
@@ -308,16 +308,16 @@ class A24StudioCS_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer
 
 
     /**
-* Called to process a normal variable.
-*
-* Not required for this sniff.
-*
-* @param PHP_CodeSniffer_File $phpcsFile The PHP_CodeSniffer file where this token was found.
-* @param int $stackPtr The position where the double quoted
-* string was found.
-*
-* @return void
-*/
+     * Called to process a normal variable.
+     *
+     * Not required for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The PHP_CodeSniffer file where this token was found.
+     * @param int $stackPtr The position where the double quoted
+     * string was found.
+     *
+     * @return void
+     */
     protected function processVariable(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         return;
@@ -326,16 +326,16 @@ class A24StudioCS_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer
 
 
     /**
-* Called to process variables found in duoble quoted strings.
-*
-* Not required for this sniff.
-*
-* @param PHP_CodeSniffer_File $phpcsFile The PHP_CodeSniffer file where this token was found.
-* @param int $stackPtr The position where the double quoted
-* string was found.
-*
-* @return void
-*/
+     * Called to process variables found in duoble quoted strings.
+     *
+     * Not required for this sniff.
+     *
+     * @param PHP_CodeSniffer_File $phpcsFile The PHP_CodeSniffer file where this token was found.
+     * @param int $stackPtr The position where the double quoted
+     * string was found.
+     *
+     * @return void
+     */
     protected function processVariableInString(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         return;
