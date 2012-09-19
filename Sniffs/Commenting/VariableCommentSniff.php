@@ -233,14 +233,16 @@ class A24StudioCS_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer
             $errorPos = ($commentStart + $var->getLine());
             $index = array_keys($this->commentParser->getTagOrders(), 'var');
 
+            $indexTags = array_keys($this->commentParser->getTagOrders());
+
             if (count($index) > 1) {
                 $error = 'Only 1 @var tag is allowed in variable comment';
                 $this->currentFile->addError($error, $errorPos, 'DuplicateVar');
                 return;
             }
 
-            if ($index[0] !== 1) {
-                $error = 'The @var tag must be the first tag in a variable comment';
+            if ($index[0] !== (count($indexTags) - 1)) {
+                $error = 'The @var tag must be the last tag in a variable comment';
                 $this->currentFile->addError($error, $errorPos, 'VarOrder');
             }
 
