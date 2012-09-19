@@ -24,14 +24,20 @@
  <rule ref="PEAR.Classes.ClassDeclaration"/>
  <rule ref="PEAR.WhiteSpace.ScopeIndent"/>
  <rule ref="Squiz.Functions.GlobalFunction"/>
+ <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+ <rule ref="Squiz.WhiteSpace.MemberVarSpacing"/>
+ <rule ref="Squiz.Commenting.DocCommentAlignment"/>
  
  <!--
     Add custom sniffs
  -->
+ 
  <rule ref="A24StudioCS.WhiteSpace.ScopeClosingBrace"/>
  <rule ref="A24StudioCS.Commenting.FunctionComment"/>
  <rule ref="A24StudioCS.Commenting.FileComment"/>
  <rule ref="A24StudioCS.Commenting.InlineComment"/>
- 
+ <rule ref="A24StudioCS.Commenting.VariableComment"/>
+ <rule ref="A24StudioCS.NamingConventions.ValidVariableName"/>
+ <rule ref="A24StudioCS.WhiteSpace.FunctionSpacing"/>
  
 </ruleset>

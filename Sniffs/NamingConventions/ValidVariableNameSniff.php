@@ -31,7 +31,7 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === fa
  * @version   Release: 1.3.5
  * @link      http://pear.php.net/package/PHP_CodeSniffer
  */
-class A24StudioCS_Sniffs_NamingConventions_ValidVariableName extends PHP_CodeSniffer_Standards_AbstractVariableSniff
+class A24StudioCS_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_CodeSniffer_Standards_AbstractVariableSniff
 {
 
     /**
@@ -164,9 +164,9 @@ class A24StudioCS_Sniffs_NamingConventions_ValidVariableName extends PHP_CodeSni
                 return;
             }
         } else {
-            if (substr($varName, 0, 1) !== '_') {
+            if (substr($varName, 0, 1) === '_') {
                 $scope = ucfirst($memberProps['scope']);
-                $error = '%s member variable "%s" must contain a leading underscore';
+                $error = '%s member variable "%s" must not contain a leading underscore';
                 $data  = array(
                           $scope,
                           $varName,
@@ -176,7 +176,7 @@ class A24StudioCS_Sniffs_NamingConventions_ValidVariableName extends PHP_CodeSni
             }
         }
 
-        if (PHP_CodeSniffer::isCamelCaps($varName, false, $public, false) === false) {
+        if (PHP_CodeSniffer::isCamelCaps($varName, false, true, false) === false) {
             $error = 'Variable "%s" is not in valid camel caps format';
             $data  = array($varName);
             $phpcsFile->addError($error, $stackPtr, 'MemberVarNotCamelCaps', $data);
