@@ -27,6 +27,7 @@
  <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
  <rule ref="Squiz.WhiteSpace.MemberVarSpacing"/>
  <rule ref="Squiz.Commenting.DocCommentAlignment"/>
+ <rule ref="Squiz.Commenting.FunctionCommentThrowTag"/>
  
  <!--
     Add custom sniffs
