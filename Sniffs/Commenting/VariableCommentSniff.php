@@ -8,6 +8,7 @@
  * @package PHP_CodeSniffer
  * @author Greg Sherwood <gsherwood@squiz.net>
  * @author Marc McIntyre <mmcintyre@squiz.net>
+ * @author Neil Nienaber <neil.nienaber@a24group.com>
  * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @link http://pear.php.net/package/PHP_CodeSniffer
@@ -37,6 +38,7 @@ if (class_exists('PHP_CodeSniffer_CommentParser_MemberCommentParser', true) === 
  * @package PHP_CodeSniffer
  * @author Greg Sherwood <gsherwood@squiz.net>
  * @author Marc McIntyre <mmcintyre@squiz.net>
+ * @author Neil Nienaber <neil.nienaber@a24group.com>
  * @copyright 2006-2012 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license https://github.com/squizlabs/PHP_CodeSniffer/blob/master/licence.txt BSD Licence
  * @version Release: @package_version@
@@ -233,14 +235,15 @@ class A24StudioCS_Sniffs_Commenting_VariableCommentSniff extends PHP_CodeSniffer
             $errorPos = ($commentStart + $var->getLine());
             $index = array_keys($this->commentParser->getTagOrders(), 'var');
 
-            $indexTags = array_keys($this->commentParser->getTagOrders());
-
             if (count($index) > 1) {
                 $error = 'Only 1 @var tag is allowed in variable comment';
                 $this->currentFile->addError($error, $errorPos, 'DuplicateVar');
                 return;
             }
 
+            //@author Neil Nienaber <neil.nienaber@a24group.com>
+            //We would like to fore the @var tag to be the last tag
+            $indexTags = array_keys($this->commentParser->getTagOrders());
             if ($index[0] !== (count($indexTags) - 1)) {
                 $error = 'The @var tag must be the last tag in a variable comment';
                 $this->currentFile->addError($error, $errorPos, 'VarOrder');

@@ -8,6 +8,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Neil Nienaber <neil.nienaber@a24group.com>
  * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -20,6 +21,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Neil Nienaber <neil.nienaber@a24group.com>
  * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @version   Release: 1.3.5
@@ -234,6 +236,7 @@ class A24StudioCS_Sniffs_Functions_FunctionCallSignatureSniff implements PHP_Cod
                     $foundIndent = 0;
                 } else {
                     $foundIndent = strlen($tokens[$i]['content']);
+                    //@author    Neil Nienaber <neil.nienaber@a24group.com>
                     //If the next code is a string concat, it is actually part of the above line, so we
                     //need to indent the line one more time to show it is still part of the above line
                     if ($tokens[$i + 1]['code'] === T_STRING_CONCAT) {
@@ -244,9 +247,9 @@ class A24StudioCS_Sniffs_Functions_FunctionCallSignatureSniff implements PHP_Cod
                 if ($expectedIndent !== $foundIndent) {
                     $error = 'Multi-line function call not indented correctly; expected %s spaces but found %s';
                     $data  = array(
-                              $expectedIndent,
-                              $foundIndent,
-                             );
+                        $expectedIndent,
+                        $foundIndent,
+                    );
                     $phpcsFile->addError($error, $i, 'Indent', $data);
                 }
             }//end if
@@ -271,7 +274,6 @@ class A24StudioCS_Sniffs_Functions_FunctionCallSignatureSniff implements PHP_Cod
         }
 
     }//end processMultiLineCall()
-
 
 }//end class
 ?>

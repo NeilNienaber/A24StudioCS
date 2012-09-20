@@ -8,6 +8,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Neil Nienaber <neil.nienaber@a24group.com>
  * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -24,6 +25,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Neil Nienaber <neil.nienaber@a24group.com>
  * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @version   Release: 1.3.5
@@ -124,6 +126,7 @@ class A24StudioCS_Sniffs_Files_LineLengthSniff implements PHP_CodeSniffer_Sniff
             return;
         }
 
+        //@author    Neil Nienaber <neil.nienaber@a24group.com>
         //We need to add our custom tags that may exceed the line lengths
         //This is a pipe delimited string
         $arrExcludedTags = explode('|', $this->ignoreTagLineLength);

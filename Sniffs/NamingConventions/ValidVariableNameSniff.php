@@ -8,6 +8,7 @@
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Neil Nienaber <neil.nienaber@a24group.com>
  * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @link      http://pear.php.net/package/PHP_CodeSniffer
@@ -26,6 +27,7 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractVariableSniff', true) === fa
  * @package   PHP_CodeSniffer
  * @author    Greg Sherwood <gsherwood@squiz.net>
  * @author    Marc McIntyre <mmcintyre@squiz.net>
+ * @author    Neil Nienaber <neil.nienaber@a24group.com>
  * @copyright 2006-2011 Squiz Pty Ltd (ABN 77 084 670 600)
  * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
  * @version   Release: 1.3.5
@@ -156,6 +158,8 @@ class A24StudioCS_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_Co
         $memberProps = $phpcsFile->getMemberProperties($stackPtr);
         $public      = ($memberProps['scope'] === 'public');
 
+        //@author    Neil Nienaber <neil.nienaber@a24group.com>
+        //We do not want our private and protected vars to have a leading underscore
         if ($public === true) {
             if (substr($varName, 0, 1) === '_') {
                 $error = 'Public member variable "%s" must not contain a leading underscore';
