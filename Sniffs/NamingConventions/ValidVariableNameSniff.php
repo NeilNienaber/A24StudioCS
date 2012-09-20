@@ -42,9 +42,9 @@ class A24StudioCS_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_Co
      * @var array
      */
     private $_ignore = array(
-                        T_WHITESPACE,
-                        T_COMMENT,
-                       );
+        T_WHITESPACE,
+        T_COMMENT,
+    );
 
 
     /**
@@ -62,16 +62,16 @@ class A24StudioCS_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_Co
         $varName = ltrim($tokens[$stackPtr]['content'], '$');
 
         $phpReservedVars = array(
-                            '_SERVER',
-                            '_GET',
-                            '_POST',
-                            '_REQUEST',
-                            '_SESSION',
-                            '_ENV',
-                            '_COOKIE',
-                            '_FILES',
-                            'GLOBALS',
-                           );
+            '_SERVER',
+            '_GET',
+            '_POST',
+            '_REQUEST',
+            '_SESSION',
+            '_ENV',
+            '_COOKIE',
+            '_FILES',
+            'GLOBALS',
+        );
 
         // If it's a php reserved var, then its ok.
         if (in_array($varName, $phpReservedVars) === true) {
@@ -172,9 +172,9 @@ class A24StudioCS_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_Co
                 $scope = ucfirst($memberProps['scope']);
                 $error = '%s member variable "%s" must not contain a leading underscore';
                 $data  = array(
-                          $scope,
-                          $varName,
-                         );
+                $scope,
+                $varName,
+                );
                 $phpcsFile->addError($error, $stackPtr, 'PrivateNoUnderscore', $data);
                 return;
             }
@@ -207,16 +207,16 @@ class A24StudioCS_Sniffs_NamingConventions_ValidVariableNameSniff extends PHP_Co
         $tokens = $phpcsFile->getTokens();
 
         $phpReservedVars = array(
-                            '_SERVER',
-                            '_GET',
-                            '_POST',
-                            '_REQUEST',
-                            '_SESSION',
-                            '_ENV',
-                            '_COOKIE',
-                            '_FILES',
-                            'GLOBALS',
-                           );
+            '_SERVER',
+            '_GET',
+            '_POST',
+            '_REQUEST',
+            '_SESSION',
+            '_ENV',
+            '_COOKIE',
+            '_FILES',
+            'GLOBALS',
+        );
 
         if (preg_match_all('|[^\\\]\$([a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*)|', $tokens[$stackPtr]['content'], $matches) !== 0) {
             foreach ($matches[1] as $varName) {
