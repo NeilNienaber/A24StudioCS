@@ -341,11 +341,11 @@ class A24StudioCS_Sniffs_Commenting_FunctionCommentSniff implements PHP_CodeSnif
             }
 
             // Parameters must appear immediately after the comment.
-            if ($params[0]->getOrder() !== 2) {
-                $error    = 'Parameters must appear immediately after the comment';
-                $errorPos = ($params[0]->getLine() + $commentStart);
-                $this->currentFile->addError($error, $errorPos);
-            }
+//             if ($params[0]->getOrder() !== 2) {
+//                 $error    = 'Parameters must appear immediately after the comment';
+//                 $errorPos = ($params[0]->getLine() + $commentStart);
+//                 $this->currentFile->addError($error, $errorPos);
+//             }
 
             $previousParam      = null;
             $spaceBeforeVar     = 10000;
