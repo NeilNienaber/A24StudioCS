@@ -24,7 +24,7 @@
  <rule ref="Generic.PHP.LowerCaseConstant"/>
  
  <rule ref="PEAR.Classes.ClassDeclaration"/>
- <rule ref="PEAR.Functions.FunctionCallSignature"/>
+ 
  <rule ref="PEAR.Functions.ValidDefaultValue"/>
  <rule ref="PEAR.WhiteSpace.ScopeIndent"/>
  
@@ -45,6 +45,8 @@
  <rule ref="A24StudioCS.NamingConventions.ValidVariableName"/>
  <rule ref="A24StudioCS.WhiteSpace.FunctionSpacing"/>
  <rule ref="A24StudioCS.WhiteSpace.ScopeClosingBrace"/>
+ 
+ <rule ref="A24StudioCS.Functions.FunctionCallSignature"/>
  
  <rule ref="A24StudioCS.Files.LineLength">
     <properties>
