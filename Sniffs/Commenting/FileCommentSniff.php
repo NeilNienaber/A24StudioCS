@@ -434,31 +434,6 @@ class A24StudioCS_Sniffs_Commenting_FileCommentSniff implements PHP_CodeSniffer_
                 }
             }
         }
-
-        //@author    Neil Nienaber <neil.nienaber@a24group.com>
-        //We do not want the comments to be lined up
-        //remove this part of the sniff
-//         foreach ($indentation as $indentInfo) {
-//             if ($indentInfo['space'] !== 1
-//                     && $indentInfo['space'] !== ($longestTag + 1)
-//             ) {
-//                 $expected = (($longestTag - strlen($indentInfo['tag'])) + 1);
-//                 $space = ($indentInfo['space'] - strlen($indentInfo['tag']));
-//                 $error = "@$indentInfo[tag] tag comment indented incorrectly. ";
-//                 $error .= "Expected $expected spaces but found $space.";
-
-//                 $getTagMethod = 'get' . ucfirst($indentInfo['tag']);
-
-//                 if ($this->tags[$indentInfo['tag']]['allow_multiple'] === true) {
-//                     $line = $indentInfo['line'];
-//                 } else {
-//                     $tagElem = $this->commentParser->$getTagMethod();
-//                     $line = $tagElem->getLine();
-//                 }
-
-//                 $this->currentFile->addError($error, ($commentStart + $line));
-//             }
-//         }
     }
 
     /**
